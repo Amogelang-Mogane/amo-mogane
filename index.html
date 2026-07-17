@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amogelang Mogane — Writing, Content &amp; Admin Support</title>
+<meta name="description" content="Amogelang Mogane offers remote writing, content, and admin support built on IT support and project management fundamentals.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16233F;
+    --paper:#F6F5F1;
+    --paper-alt:#EFEDE5;
+    --slate:#5B6478;
+    --teal:#2F8F84;
+    --amber:#C98A3E;
+    --hairline:#D8D4C9;
+    --white:#FFFFFF;
+    --radius:2px;
+    --max:1080px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Space Grotesk', sans-serif;
+    color:var(--ink);
+    margin:0 0 .5em 0;
+    letter-spacing:-0.01em;
+  }
+  a{color:var(--teal);}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+
+  /* NAV */
+  header.site-nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,245,241,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--hairline);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px;
+    max-width:var(--max); margin:0 auto;
+  }
+  .brand{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700; font-size:1.05rem;
+    color:var(--ink); text-decoration:none;
+  }
+  .brand .dot{color:var(--teal);}
+  nav.links{display:flex; gap:26px; flex-wrap:wrap;}
+  nav.links a{
+    color:var(--slate); text-decoration:none;
+    font-size:.85rem; font-family:'IBM Plex Mono', monospace;
+    text-transform:uppercase; letter-spacing:.06em;
+    border-bottom:1px solid transparent;
+    padding-bottom:2px;
+    transition:color .15s, border-color .15s;
+  }
+  nav.links a:hover{color:var(--ink); border-color:var(--teal);}
+  .nav-toggle{display:none;}
+
+  /* STATUS BAR (signature element) */
+  .status-bar{
+    background:var(--ink); color:var(--paper);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:.78rem;
+    letter-spacing:.04em;
+  }
+  .status-inner{
+    max-width:var(--max); margin:0 auto; padding:9px 28px;
+    display:flex; gap:22px; flex-wrap:wrap; align-items:center;
+  }
+  .status-item{display:flex; align-items:center; gap:7px; color:#CBD3E1;}
+  .pulse{
+    width:8px; height:8px; border-radius:50%;
+    background:#3FD6A3; flex:none;
+    box-shadow:0 0 0 0 rgba(63,214,163,.6);
+    animation:pulse 2.2s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(63,214,163,.55);}
+    70%{box-shadow:0 0 0 7px rgba(63,214,163,0);}
+    100%{box-shadow:0 0 0 0 rgba(63,214,163,0);}
+  }
+
+  /* HERO */
+  .hero{padding:88px 0 76px; border-bottom:1px solid var(--hairline);}
+  .eyebrow{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:.78rem; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--teal); border:1px solid var(--teal);
+    padding:5px 12px; border-radius:20px; margin-bottom:22px;
+  }
+  .hero h1{font-size:clamp(2.2rem, 5vw, 3.4rem); line-height:1.05;}
+  .hero .role{
+    font-size:clamp(1.05rem, 2vw, 1.3rem);
+    color:var(--slate); max-width:640px; margin:14px 0 30px;
+  }
+  .hero .who-help{
+    font-size:.95rem; color:var(--ink); max-width:640px;
+    padding:16px 18px; background:var(--white);
+    border:1px solid var(--hairline); border-left:3px solid var(--amber);
+    margin-bottom:34px;
+  }
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:.85rem; letter-spacing:.03em;
+    text-decoration:none; padding:13px 22px;
+    border-radius:2px; display:inline-block;
+    transition:transform .12s ease, background .15s ease;
+  }
+  .btn-primary{background:var(--ink); color:var(--paper);}
+  .btn-primary:hover{background:var(--teal); transform:translateY(-1px);}
+  .btn-ghost{background:transparent; color:var(--ink); border:1px solid var(--ink);}
+  .btn-ghost:hover{border-color:var(--teal); color:var(--teal);}
+
+  /* SECTIONS */
+  section{padding:64px 0; border-bottom:1px solid var(--hairline);}
+  section:last-of-type{border-bottom:none;}
+  .section-head{
+    display:flex; align-items:baseline; gap:16px;
+    margin-bottom:34px; flex-wrap:wrap;
+  }
+  .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:.78rem; letter-spacing:.1em;
+    color:var(--white); background:var(--ink);
+    padding:5px 10px; border-radius:2px; flex:none;
+  }
+  .section-head h2{font-size:1.7rem; margin:0;}
+  .section-sub{color:var(--slate); font-family:'IBM Plex Mono', monospace; font-size:.8rem;}
+
+  .lede{font-size:1.05rem; color:var(--slate); max-width:720px; margin-bottom:30px;}
+
+  /* ABOUT */
+  .about-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:22px;}
+  .about-card{
+    background:var(--white); border:1px solid var(--hairline);
+    padding:24px 26px;
+  }
+  .about-card h3{font-size:1.05rem; margin-bottom:10px;}
+  .about-card p, .about-card li{color:var(--slate); font-size:.95rem;}
+  .about-card ul{margin:8px 0 0; padding-left:18px;}
+  .about-card.wide{grid-column:1 / -1;}
+
+  /* SERVICES */
+  .services-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:22px;}
+  .service-card{
+    background:var(--white); border:1px solid var(--hairline);
+    padding:24px 26px; position:relative;
+  }
+  .service-card h3{font-size:1.05rem;}
+  .service-card ul{margin:10px 0 0; padding-left:18px; color:var(--slate); font-size:.93rem;}
+  .service-card li{margin-bottom:5px;}
+  .tools-strip{
+    margin-top:36px; padding-top:26px; border-top:1px dashed var(--hairline);
+  }
+  .tools-strip h3{font-size:.95rem; font-family:'IBM Plex Mono', monospace; text-transform:uppercase; letter-spacing:.05em; color:var(--slate); margin-bottom:14px;}
+  .pill-row{display:flex; gap:10px; flex-wrap:wrap;}
+  .pill{
+    font-family:'IBM Plex Mono', monospace; font-size:.82rem;
+    background:var(--paper-alt); border:1px solid var(--hairline);
+    padding:6px 12px; border-radius:20px; color:var(--ink);
+  }
+
+  /* TWO-COL info blocks (availability / location / why) */
+  .info-grid{display:grid; grid-template-columns:1fr 1fr; gap:40px;}
+  .info-grid .col h3{font-size:.95rem; font-family:'IBM Plex Mono', monospace; text-transform:uppercase; letter-spacing:.05em; color:var(--teal); margin-bottom:10px;}
+  .info-grid .col p, .info-grid .col li{color:var(--slate);}
+  .info-grid .col ul{padding-left:18px; margin:8px 0;}
+  .kv{display:flex; gap:10px; margin-bottom:10px; font-size:.95rem;}
+  .kv .k{font-family:'IBM Plex Mono', monospace; color:var(--ink); min-width:110px; flex:none;}
+  .kv .v{color:var(--slate);}
+
+  /* WHY */
+  .why-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .why-card{padding:22px 20px; background:var(--white); border:1px solid var(--hairline);}
+  .why-card .num{font-family:'IBM Plex Mono', monospace; color:var(--amber); font-size:.85rem; margin-bottom:8px; display:block;}
+  .why-card h3{font-size:1rem;}
+  .why-card p{color:var(--slate); font-size:.93rem; margin:0;}
+
+  /* RATES */
+  .rate-box{
+    background:var(--ink); color:var(--paper);
+    padding:34px 32px; display:flex; justify-content:space-between;
+    align-items:center; gap:24px; flex-wrap:wrap;
+  }
+  .rate-box .label{font-family:'IBM Plex Mono', monospace; font-size:.8rem; color:#9FB0C9; text-transform:uppercase; letter-spacing:.06em; margin-bottom:8px;}
+  .rate-box .value{font-family:'Space Grotesk', sans-serif; font-size:1.6rem; font-weight:600;}
+  .rate-box .note{color:#B9C2D6; font-size:.9rem; max-width:360px;}
+
+  /* CONTACT */
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:40px;}
+  .contact-details .kv .k{min-width:80px;}
+  .contact-details a{color:var(--ink); text-decoration:none; border-bottom:1px solid var(--teal);}
+  form.contact-form{display:flex; flex-direction:column; gap:14px;}
+  form.contact-form label{
+    font-family:'IBM Plex Mono', monospace; font-size:.78rem;
+    text-transform:uppercase; letter-spacing:.05em; color:var(--slate);
+    margin-bottom:5px; display:block;
+  }
+  form.contact-form input, form.contact-form textarea{
+    width:100%; padding:11px 12px; font-family:'IBM Plex Sans', sans-serif;
+    font-size:.95rem; border:1px solid var(--hairline); border-radius:2px;
+    background:var(--white); color:var(--ink);
+  }
+  form.contact-form input:focus, form.contact-form textarea:focus{
+    outline:2px solid var(--teal); outline-offset:1px;
+  }
+  form.contact-form textarea{resize:vertical; min-height:110px;}
+
+  footer{
+    padding:30px 0; text-align:center;
+    color:var(--slate); font-size:.82rem;
+    font-family:'IBM Plex Mono', monospace;
+  }
+
+  @media (max-width:760px){
+    .about-grid, .services-grid, .info-grid, .why-grid, .contact-grid{grid-template-columns:1fr;}
+    nav.links{display:none;}
+    .rate-box{flex-direction:column; align-items:flex-start;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .pulse{animation:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  :focus-visible{outline:2px solid var(--teal); outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand">Amogelang Mogane<span class="dot">.</span></a>
+    <nav class="links">
+      <a href="#about">Who</a>
+      <a href="#services">What</a>
+      <a href="#availability">When</a>
+      <a href="#location">Where</a>
+      <a href="#why">Why</a>
+      <a href="#rates">How much</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="status-bar">
+  <div class="status-inner">
+    <span class="status-item"><span class="pulse"></span>Available for project work</span>
+    <span class="status-item">Remote only</span>
+    <span class="status-item">Starts within 2 weeks</span>
+  </div>
+</div>
+
+<main id="top">
+
+  <section class="hero wrap" style="border-bottom:1px solid var(--hairline);">
+    <span class="eyebrow">Writing · Content · Admin Support</span>
+    <h1>Amogelang Mogane</h1>
+    <p class="role">I help small teams, students, and busy professionals stay organised — through clear writing, careful admin work, and reliable follow-through.</p>
+    <p class="who-help"><strong>Who I help:</strong> people and small teams who need someone dependable to handle documentation, correspondence, scheduling, and day-to-day admin — so they can focus on the bigger picture.</p>
+    <div class="cta-row">
+      <a href="#contact" class="btn btn-primary">Get in touch</a>
+      <a href="#services" class="btn btn-ghost">See what I offer</a>
+    </div>
+  </section>
+
+  <!-- ABOUT / WHO -->
+  <section id="about" class="wrap">
+    <div class="section-head">
+      <span class="tag">WHO</span>
+      <h2>About Amogelang Mogane</h2>
+    </div>
+    <p class="lede">I am a final-year Bachelor of Commerce (Economics) student at the University of Pretoria. Alongside my studies, I work as a Student IT Lab Technician and I'm currently part of the Umuzi Advanced Project Management programme. My work and learning both focus on combining technical support with structured, well-organised project delivery.</p>
+
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>Who I Am</h3>
+        <p>I'm based in Johannesburg, Gauteng, South Africa. I enjoy working in environments where structure, reliability, and clear communication matter. My experience in IT support has taught me how to stay calm under pressure, solve problems quickly, and support people who rely on technology to get their work done.</p>
+      </div>
+      <div class="about-card">
+        <h3>Education</h3>
+        <p>I am completing a Bachelor of Commerce in Economics at the University of Pretoria (2023–2026). My studies help me think in a structured, analytical way, while my work experience gives me practical exposure to real-world systems, people, and processes.</p>
+      </div>
+      <div class="about-card">
+        <h3>What I'm Doing Now</h3>
+        <p><strong>Student IT Lab Technician</strong> — University of Pretoria</p>
+        <ul>
+          <li>Provide technical support for lab users and personal devices</li>
+          <li>Troubleshoot hardware and software issues</li>
+          <li>Maintain and manage IT equipment for reliability</li>
+          <li>Support structured office and lab operations</li>
+        </ul>
+        <p style="margin-top:14px;"><strong>Advanced Project Management Trainee</strong> — Umuzi</p>
+        <ul>
+          <li>Building skills in project planning and scheduling</li>
+          <li>Practising stakeholder communication and coordination</li>
+          <li>Working on assignments that simulate real project environments</li>
+          <li>Learning to manage tasks, timelines, and documentation</li>
+        </ul>
+      </div>
+      <div class="about-card">
+        <h3>Key Strengths &amp; Skills</h3>
+        <p>My strengths sit at the intersection of technical support and organised project work. I'm especially strong in:</p>
+        <ul>
+          <li>Technical support and troubleshooting</li>
+          <li>Attention to detail and process discipline</li>
+          <li>Time and task management</li>
+          <li>Teamwork and communication</li>
+          <li>Working in structured, time-sensitive environments</li>
+        </ul>
+        <p style="margin-top:10px;">I'm also growing my skills in project management, risk awareness, and process improvement so I can contribute more to operations and delivery over time.</p>
+      </div>
+      <div class="about-card wide">
+        <h3>Where I'm Heading</h3>
+        <p>I'm interested in roles that combine technical understanding with structured project delivery, such as project coordination, operations support, and IT project management. Over time, I plan to deepen my skills in data analytics so I can move into strategic and leadership roles in the future.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES / WHAT -->
+  <section id="services" class="wrap">
+    <div class="section-head">
+      <span class="tag">WHAT</span>
+      <h2>Services</h2>
+    </div>
+    <p class="lede">What I can confidently offer right now — practical, detail-driven writing and admin support, backed by an IT-support mindset for staying organised under pressure.</p>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>Writing &amp; Editing</h3>
+        <ul>
+          <li>Proofreading and copy editing</li>
+          <li>Drafting emails, letters, and reports</li>
+          <li>Formatting documents for clarity and consistency</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <h3>Admin &amp; Coordination</h3>
+        <ul>
+          <li>Data entry and record-keeping</li>
+          <li>Scheduling and calendar support</li>
+          <li>Correspondence and inbox support</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <h3>Documentation &amp; Process</h3>
+        <ul>
+          <li>Meeting notes and task tracking</li>
+          <li>Simple document templates and checklists</li>
+          <li>Organising files and information systems</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <h3>Technical Support</h3>
+        <ul>
+          <li>Basic IT troubleshooting and setup support</li>
+          <li>Guidance on everyday software and hardware issues</li>
+          <li>Clear, patient explanations for non-technical users</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tools-strip">
+      <h3>Tools I use confidently</h3>
+      <div class="pill-row">
+        <span class="pill">Microsoft Word</span>
+        <span class="pill">Microsoft Excel</span>
+        <span class="pill">Microsoft Outlook</span>
+        <span class="pill">Google Docs</span>
+        <span class="pill">Google Sheets</span>
+        <span class="pill">Google Calendar</span>
+        <span class="pill">PowerPoint</span>
+        <span class="pill">Basic ticketing / helpdesk systems</span>
+      </div>
+      <p style="color:var(--slate); font-size:.85rem; margin-top:14px;">Note to Amogelang: adjust this tool list to match exactly what you use day-to-day.</p>
+    </div>
+  </section>
+
+  <!-- AVAILABILITY / WHEN -->
+  <section id="availability" class="wrap">
+    <div class="section-head">
+      <span class="tag">WHEN</span>
+      <h2>Availability</h2>
+    </div>
+    <div class="info-grid">
+      <div class="col">
+        <h3>Hours</h3>
+        <div class="kv"><span class="k">Weekdays</span><span class="v">Evenings / after hours, once classes and lab shifts are done</span></div>
+        <div class="kv"><span class="k">Weekends</span><span class="v">Generally available — confirm per request</span></div>
+        <div class="kv"><span class="k">Term time</span><span class="v">Limited to after-hours availability</span></div>
+      </div>
+      <div class="col">
+        <h3>Start Date</h3>
+        <p>I'm able to start new work <strong>within two weeks</strong> of confirming a project or role.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION / WHERE -->
+  <section id="location" class="wrap">
+    <div class="section-head">
+      <span class="tag">WHERE</span>
+      <h2>Work Location</h2>
+    </div>
+    <div class="info-grid">
+      <div class="col">
+        <h3>Work Style</h3>
+        <p><strong>Remote only</strong> — all my current commitments in Pretoria mean I work best online, with clear written communication and scheduled check-ins.</p>
+      </div>
+      <div class="col">
+        <h3>Based In</h3>
+        <p>Johannesburg, Gauteng, South Africa (studying in Pretoria). Comfortable working with clients across South African time zones.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section id="why" class="wrap">
+    <div class="section-head">
+      <span class="tag">WHY</span>
+      <h2>Why Hire Me</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <span class="num">01</span>
+        <h3>Calm Under Pressure</h3>
+        <p>Working IT support has taught me to stay level-headed and solve problems methodically, even when things are urgent.</p>
+      </div>
+      <div class="why-card">
+        <span class="num">02</span>
+        <h3>Reliable Follow-Through</h3>
+        <p>I track my tasks and timelines carefully — if I commit to a deadline, I show up for it.</p>
+      </div>
+      <div class="why-card">
+        <span class="num">03</span>
+        <h3>Easy to Work With</h3>
+        <p>Clear communication, honest updates, and a willingness to ask questions early rather than guess.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RATES / HOW MUCH -->
+  <section id="rates" class="wrap">
+    <div class="section-head">
+      <span class="tag">HOW MUCH</span>
+      <h2>Rates</h2>
+    </div>
+    <div class="rate-box">
+      <div>
+        <div class="label">Pricing model</div>
+        <div class="value">Per-project, quoted on request</div>
+      </div>
+      <p class="note">Every project is different, so I quote based on scope, time, and deliverables. Tell me what you need and I'll come back with a clear, fair price before any work begins.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="wrap">
+    <div class="section-head">
+      <span class="tag">CONTACT</span>
+      <h2>Contact Me</h2>
+    </div>
+    <p class="lede">If you'd like to discuss a role, project, or collaboration, you can reach me using the details below or the contact form on this page.</p>
+
+    <div class="contact-grid">
+      <div class="contact-details">
+        <div class="kv"><span class="k">Email</span><span class="v"><a href="mailto:amogelang.mogane@umuzi.org">amogelang.mogane@umuzi.org</a></span></div>
+        <div class="kv"><span class="k">Mobile</span><span class="v"><a href="tel:+27739746300">+27 73 974 6300</a></span></div>
+        <div class="kv"><span class="k">Location</span><span class="v">Johannesburg, Gauteng, South Africa</span></div>
+      </div>
+
+      <form class="contact-form" id="contactForm">
+        <div>
+          <label for="name">Your name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+          <label for="email">Your email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="border:none; cursor:pointer;">Send message</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  &copy; <span id="year"></span> Amogelang Mogane. Built as a simple, honest introduction — more to come.
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = encodeURIComponent(document.getElementById('name').value);
+    const email = document.getElementById('email').value;
+    const message = encodeURIComponent(document.getElementById('message').value);
+    const subject = encodeURIComponent('Website enquiry from ' + decodeURIComponent(name));
+    const body = encodeURIComponent('Name: ' + decodeURIComponent(name) + '\nEmail: ' + email + '\n\nMessage:\n' + decodeURIComponent(message));
+    window.location.href = 'mailto:amogelang.mogane@umuzi.org?subject=' + subject + '&body=' + body;
+  });
+</script>
+
+</body>
+</html>
